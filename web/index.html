@@ -7,7 +7,10 @@
         <meta name="viewport" content="width=device-width"/>
         <meta name="viewport" content="width=device-width, maximum-scale=1"/>
         <title>Teste Híbrido</title>
+        <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
+        <script src="../js/jquery.js"></script>
         <script src="../js/jquery.mobile-1.4.5.js"></script>
         <script src="../cordova-2.5.0.js" type="text/javascript"></script>	
     
@@ -15,7 +18,13 @@
             <script type="text/javascript">
 
                     $( document ).on( "pagecreate","#home",function() {
-
+                        $("#menu_esquerdo").removeClass("ui-shadow");
+			$("#menu_esquerdo").removeClass("ui-corner-all");
+			$("#menu_esquerdo").removeClass("ui-btn");
+			 
+			$("#menu_direito").removeClass("ui-shadow");
+			$("#menu_direito").removeClass("ui-corner-all");
+			$("#menu_direito").removeClass("ui-btn");
                     });
 
 
@@ -32,22 +41,38 @@
 
                 <div data-role="page" class="jqm-demos ui-responsive-panel" id="home">
 
-                            <div data-role="header" id="home_header">
-
+                            <div data-role="header" id="home_header" style="background-color: #bab3d5;">
+                                    <br/>
+                                    <a href="#nav-panel" id="menu_esquerdo" style="border:solid 0px #fff;font-size:30px;"><i class="fa fa-bars"></i></a>
+                                    <a href="#add-form"  id="menu_direito" style="border:solid 0px #fff;font-size:30px;"><i id="controla_painel_direito" class="fa fa-user"></i></a>
+                                    <br/>    
                             </div><!-- /header -->
 
                             <div role="main" class="ui-content">
-
                                 <h5>Meu teste Híbrido!</h5>
                             </div>
 
 
-                            <div data-role="footer">
-
-
+                            <div data-role="footer"  style="background-color: #bab3d5;">
+                                <br/><br/>
                             </div>
-
-
+                            
+                            
+                            <!--  panel right -->
+                            <div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="add-form" style="background-color:#FB7E12;border:solid 1px #FB7E12;">
+                                <ul data-role='listview' data-inset='true'>
+                                   <li><a href='#' id='link_entrar_fliiguer'>Localização</a></li>
+                                   <li><a href='#' >Câmera</a></li>
+                                   <li><a href='#' >Aúdio</a></li>
+                                   <li><a href='#' >Fotos</a></li>
+                                   <li><a href='#' >Acelerômetro</a></li>
+                                   <li><a href='#' >Notificação</a></li>
+                                   <li><a href='#' >Web Browser</a></li>
+                                </ul>
+                            
+                            </div>
+                            <!-- /panel right -->
+                            
                 </div><!-- /page -->
 
     </body>
