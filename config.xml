@@ -44,7 +44,6 @@
 <feature name="http://api.phonegap.com/1.0/geolocation" />
 <feature name="http://api.phonegap.com/1.0/device" />
 
-<gap:plugin name="org.li8.inappbrowser" version="0.1" />
 
 <access origin="*" />	
 <script src="cordova.js"></script>
