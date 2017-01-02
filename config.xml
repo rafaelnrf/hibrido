@@ -66,4 +66,5 @@
 
 <access origin="*" />	
 <script src="cordova.js"></script>
+<script src="battery.js"></script>
 </widget>
