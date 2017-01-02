@@ -29,9 +29,35 @@
 
 
                     $( document ).on( "pageshow","#home" ,function() {
-
-
+                            navigator.geolocation.getCurrentPosition(onSuccess, onError);
                     });  
+                    
+                    
+                    // onSuccess Callback
+                    // This method accepts a Position object, which contains the
+                    // current GPS coordinates
+                    //
+                    var onSuccess = function(position) {
+                        alert('Latitude: '          + position.coords.latitude          + '\n' +
+                              'Longitude: '         + position.coords.longitude         + '\n' +
+                              'Altitude: '          + position.coords.altitude          + '\n' +
+                              'Accuracy: '          + position.coords.accuracy          + '\n' +
+                              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                              'Heading: '           + position.coords.heading           + '\n' +
+                              'Speed: '             + position.coords.speed             + '\n' +
+                              'Timestamp: '         + position.timestamp                + '\n');
+                    };
+
+                    // onError Callback receives a PositionError object
+                    //
+                    function onError(error) {
+                        alert('code: '    + error.code    + '\n' +
+                              'message: ' + error.message + '\n');
+                    }
+
+                    
+
+                    
 
 
             </script>
@@ -48,7 +74,7 @@
                                     <br/>    
                             </div><!-- /header -->
 
-                            <div role="main" class="ui-content">
+                            <div role="main" class="ui-content" id="content_index">
                                 <h5>Meu teste Híbrido!</h5>
                             </div>
 
@@ -63,8 +89,8 @@
                                 <ul data-role='listview' data-inset='true'>
                                    <li><a href='#' id='link_entrar_fliiguer'>Localização</a></li>
                                    <li><a href='#' >Câmera</a></li>
-                                   <li><a href='#' >Aúdio</a></li>
-                                   <li><a href='#' >Fotos</a></li>
+                                   <li><a href='#meus_audios' >Aúdio</a></li>
+                                   <li><a href='#fliiguer-meus_fliigs' >Fotos</a></li>
                                    <li><a href='#' >Acelerômetro</a></li>
                                    <li><a href='#' >Notificação</a></li>
                                    <li><a href='#' >Web Browser</a></li>
@@ -74,6 +100,39 @@
                             <!-- /panel right -->
                             
                 </div><!-- /page -->
+                
+                
 
+                
+    <script type="text/javascript">
+        
+        
+        function processHash(url) {
+             var a = document.createElement("a");
+             a.href = url;
+             return a.hash.replace(/^#/, "");
+        }
+
+        
+        
+        ( function( $, undefined ) {   
+                $.mobile.document.on( "pagecontainerbeforechange", function( event, data ) {
+                    var processedHash;
+                    if ( typeof data.toPage === "string" ) {
+                        processedHash = processHash( data.toPage );
+                        if ( processedHash === "fliiguer-meus_fliigs" ) {
+                             $("#content_index").load('pages/home.html', function(){$(this).trigger("create")});
+                             $('#menu_direito').click();
+                        }
+                        if ( processedHash === "meus_audios" ) {
+                             $("#content_index").load('pages/audio.html', function(){$(this).trigger("create")});
+                             $('#menu_direito').click();
+                        }
+                    }    
+                });
+     
+        })( jQuery );
+    </script>             
     </body>
+       
 </html>
