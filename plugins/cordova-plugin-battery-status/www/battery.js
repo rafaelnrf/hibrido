@@ -106,4 +106,5 @@ Battery.prototype._error = function(e) {
 };
 
 var battery = new Battery(); // jshint ignore:line
+
 module.exports = battery;
