@@ -36,6 +36,7 @@
 <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
 <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />    
 <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
+<plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
 <feature name="Camera">
   <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
 </feature>     
