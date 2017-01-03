@@ -63,24 +63,24 @@
                    
                    
                     document.getElementById("cameraTakePicture").addEventListener("click", cameraTakePicture);	
-                   
+                    
+                    
                     function cameraTakePicture() {
-                        navigator.camera.getPicture(onSuccess, onFail, { 
-                           quality: 50,
-                           destinationType: Camera.DestinationType.DATA_URL
-                        });
+                        alert('teste')
+                        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URI });
+                    }
+                    
+                    function onSuccess(imageURI) {
+                        var image = document.getElementById('myImage');
+                        image.src = imageURI;
+                    }
 
-                        function onSuccess(imageData) {
-                           var image = document.getElementById('myImage');
-                           image.src = "data:image/jpeg;base64," + imageData;
-                        }
-
-                        function onFail(message) {
-                           alert('Failed because: ' + message);
-                        }
+                    function onFail(message) {
+                        alert('Failed because: ' + message);
                     }
                     
                     
+                    /*
                     document.getElementById("cameraGetPicture").addEventListener("click", cameraGetPicture);
                     
                     function cameraGetPicture() {
@@ -100,6 +100,7 @@
 
                     }
 
+                    */
             </script>
     </head>
     <body>
