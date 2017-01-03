@@ -29,7 +29,7 @@
 
 
                     $( document ).on( "pageshow","#home" ,function() {
-                           
+                       
                     });  
                     
                     
@@ -61,23 +61,9 @@
                     
                     */
                    
-                   
-                    document.getElementById("cameraTakePicture").addEventListener("click", cameraTakePicture);	
                     
                     
-                    function cameraTakePicture() {
-                        alert('teste')
-                        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URI });
-                    }
                     
-                    function onSuccess(imageURI) {
-                        var image = document.getElementById('myImage');
-                        image.src = imageURI;
-                    }
-
-                    function onFail(message) {
-                        alert('Failed because: ' + message);
-                    }
                     
                     
                     /*
@@ -163,6 +149,12 @@
     <script type="text/javascript">
         
         
+        
+        $.mobile.document.on("click","#cameraTakePicture",function(){
+            alert('ok')
+                   cameraTakePicture();
+        });
+        
         function processHash(url) {
              var a = document.createElement("a");
              a.href = url;
@@ -188,6 +180,24 @@
                 });
      
         })( jQuery );
+        
+        
+        
+        function cameraTakePicture() {
+            alert('teste')
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URI });
+        }
+
+        function onSuccess(imageURI) {
+            var image = document.getElementById('myImage');
+            image.src = imageURI;
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+        
+        
     </script>             
     </body>
        
