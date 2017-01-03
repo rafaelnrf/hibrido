@@ -33,6 +33,12 @@
                     });  
                     
                     
+                    
+                    
+                    
+                    
+                    /*    acesso a geolocalização................
+                    
                    var onSuccess = function(position) {
                         alert('Latitude: '          + position.coords.latitude          + '\n' +
                               'Longitude: '         + position.coords.longitude         + '\n' +
@@ -52,6 +58,47 @@
                     }
 
                     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                    
+                    */
+                   
+                   
+                    document.getElementById("cameraTakePicture").addEventListener("click", cameraTakePicture);	
+                   
+                    function cameraTakePicture() {
+                        navigator.camera.getPicture(onSuccess, onFail, { 
+                           quality: 50,
+                           destinationType: Camera.DestinationType.DATA_URL
+                        });
+
+                        function onSuccess(imageData) {
+                           var image = document.getElementById('myImage');
+                           image.src = "data:image/jpeg;base64," + imageData;
+                        }
+
+                        function onFail(message) {
+                           alert('Failed because: ' + message);
+                        }
+                    }
+                    
+                    
+                    document.getElementById("cameraGetPicture").addEventListener("click", cameraGetPicture);
+                    
+                    function cameraGetPicture() {
+                        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+                           destinationType: Camera.DestinationType.DATA_URL,
+                           sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+                        });
+
+                        function onSuccess(imageURL) {
+                           var image = document.getElementById('myImage');
+                           image.src = imageURL;
+                        }
+
+                        function onFail(message) {
+                           alert('Failed because: ' + message);
+                        }
+
+                    }
 
             </script>
     </head>
@@ -69,6 +116,21 @@
 
                             <div role="main" class="ui-content" id="content_index">
                                 <h5>Meu teste Híbrido!</h5>
+                                
+                                
+                                <br><br>
+                                <button id="cameraTakePicture">TAKE PICTURE</button>
+                                <br>
+                                <img id="myImage"/>
+                                
+                                
+                                
+                                <br/><br/>
+                                <button id="cameraGetPicture">GET PICTURE</button>
+                                
+                                
+                                
+                                
                             </div>
 
 
