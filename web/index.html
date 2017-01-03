@@ -149,6 +149,15 @@
     <script type="text/javascript">
         
         
+        var pictureSource, // picture source
+            destinationType; // sets the format of returned value
+        
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            alert('ok2')
+            pictureSource   = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
+        }
         
         $.mobile.document.on("click","#cameraTakePicture",function(){
             alert('ok')

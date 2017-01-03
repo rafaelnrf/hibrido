@@ -27,25 +27,19 @@
 <icon src="cbf.png"   gap:platform="ios" width="76" height="76"/>
 <!-- Android -->
 <gap:splash src="splash.png" />
-<gap:splash src="cbf.png" gap:platform="android" gap:qualifier="ldpi" />
-<gap:splash src="cbf.png" gap:platform="android" gap:qualifier="mdpi" />
-<gap:splash src="cbf.png" gap:platform="android" gap:qualifier="hdpi" />
-<!-- iPhone 6 -->
-<gap:splash src="splash.png" gap:platform="ios" width="320" height="480" />
-<gap:splash src="splash.png" gap:platform="ios" width="640" height="960" />
-<gap:splash src="splash.png" gap:platform="ios" width="640" height="1136" />
-<!-- iPhone 6 -->
+<gap:splash src="splash.png" gap:platform="android" gap:qualifier="ldpi" />
+<gap:splash src="splash.png" gap:platform="android" gap:qualifier="mdpi" />
+<gap:splash src="splash.png" gap:platform="android" gap:qualifier="hdpi" />
 
-<!-- winPhone -->
-<gap:splash src="splash.png" gap:platform="winphone" />
 
 
 <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
 <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />    
-<plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />     
+<plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
+<feature name="Camera">
+  <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+</feature>     
 
-<feature name="http://api.phonegap.com/1.0/camera" />
-<feature name="http://api.phonegap.com/1.0/file" />
 
 <access origin="*" />
     <allow-intent href="http://*/*" />
