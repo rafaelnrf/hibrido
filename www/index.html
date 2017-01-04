@@ -108,7 +108,7 @@
                                 <div id="deviceready" class="blink">
                                     <p class="event listening">Connecting to Device</p>
                                     <p class="event received">Device is Ready</p>
-                                    <img id="myImage"/>
+                                    <img id="myImage" style="max-width:100%;"/>
                                 </div>
                                 <br><br>
                                 <button id="cameraTakePicture">TAKE PICTURE</button>
@@ -172,11 +172,11 @@
                     if ( typeof data.toPage === "string" ) {
                         processedHash = processHash( data.toPage );
                         if ( processedHash === "fliiguer-meus_fliigs" ) {
-                             $("#content_index").load('web/pages/home.html', function(){$(this).trigger("create")});
+                             $("#content_index").load('pages/home.html', function(){$(this).trigger("create")});
                              $('#menu_direito').click();
                         }
                         if ( processedHash === "meus_audios" ) {
-                             $("#content_index").load('web/pages/audio.html', function(){$(this).trigger("create")});
+                             $("#content_index").load('pages/audio.html', function(){$(this).trigger("create")});
                              $('#menu_direito').click();
                         }
                     }    
