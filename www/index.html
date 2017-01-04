@@ -11,20 +11,12 @@
         <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.css">
         <link rel="stylesheet" href="../css/font-awesome.css">
         <script src="../js/jquery.js"></script>
-        <script type="text/javascript">
-            var dd  = $.Deferred();
-            var jqd = $.Deferred();
-            $.when(dd, jqd).done(doInit);
-
-            $(document).bind('mobileinit', function () {
-                jqd.resolve();
-            });
-        </script>
         <script src="../js/jquery.mobile-1.4.5.js"></script>
-        <script src="cordova-2.5.0.js" type="text/javascript"></script>	
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="../js/index.js"></script>
     
 
-            <script type="text/javascript">
+        <script type="text/javascript">
 
                     $( document ).on( "pagecreate","#home",function() {
                         $("#menu_esquerdo").removeClass("ui-shadow");
@@ -38,7 +30,7 @@
 
 
                     $( document ).on( "pageshow","#home" ,function() {
-                       
+                        app.initialize();
                     });  
                     
                     
@@ -97,18 +89,6 @@
 
                     */
             </script>
-            <script type="text/javascript">
-                document.addEventListener('deviceready', deviceReady, false);
-                function deviceReady() {
-                    dd.resolve();
-                }
-
-                function doInit() {
-                    alert('Ready');
-                     console.log(navigator.vibrate);
-                     navigator.vibrate(3000);
-                }
-            </script>
     </head>
     <body>
 
@@ -125,7 +105,11 @@
                             <div role="main" class="ui-content" id="content_index">
                                 <h5>Meu teste Híbrido!</h5>
                                 
-                                
+                                <div id="deviceready" class="blink">
+                                    <p class="event listening">Connecting to Device</p>
+                                    <p class="event received">Device is Ready</p>
+                                    <img id="myImage"/>
+                                </div>
                                 <br><br>
                                 <button id="cameraTakePicture">TAKE PICTURE</button>
                                 <br>
@@ -170,10 +154,9 @@
     <script type="text/javascript">
         
         
-        $.mobile.document.on("click","#cameraTakePicture",function(){
-            alert('ok')
-                   cameraTakePicture();
-        });
+       $.mobile.document.on("click","#cameraTakePicture",function(){
+	     cameraTakePicture();
+	});
         
         function processHash(url) {
              var a = document.createElement("a");
@@ -189,11 +172,11 @@
                     if ( typeof data.toPage === "string" ) {
                         processedHash = processHash( data.toPage );
                         if ( processedHash === "fliiguer-meus_fliigs" ) {
-                             $("#content_index").load('pages/home.html', function(){$(this).trigger("create")});
+                             $("#content_index").load('web/pages/home.html', function(){$(this).trigger("create")});
                              $('#menu_direito').click();
                         }
                         if ( processedHash === "meus_audios" ) {
-                             $("#content_index").load('pages/audio.html', function(){$(this).trigger("create")});
+                             $("#content_index").load('web/pages/audio.html', function(){$(this).trigger("create")});
                              $('#menu_direito').click();
                         }
                     }    
@@ -205,7 +188,7 @@
         
         function cameraTakePicture() {
             alert('teste')
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URI });
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URL });
         }
 
         function onSuccess(imageURI) {
