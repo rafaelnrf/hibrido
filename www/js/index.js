@@ -45,7 +45,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         
-        navigator.vibrate(10000);
+        navigator.vibrate(3000);
         
         //cameraTakePicture();
         
