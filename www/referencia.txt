@@ -1,0 +1,1 @@
+cordova plugin add cordova-plugin-camera --variable CAMERA_USAGE_DESCRIPTION="tire a foto de perfil" --variable PHOTOLIBRARY_USAGE_DESCRIPTION="escolha a foto"

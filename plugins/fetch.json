@@ -21,7 +21,10 @@
             "id": "cordova-plugin-camera@~2.1.1"
         },
         "is_top_level": true,
-        "variables": {}
+        "variables": {
+            "CAMERA_USAGE_DESCRIPTION": "tire a foto de perfil",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": "escolha a foto"
+        }
     },
     "cordova-plugin-media-capture": {
         "source": {
