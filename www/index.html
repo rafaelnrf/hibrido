@@ -113,6 +113,10 @@
                                 <br><br>
                                 <button id="cameraTakePicture">TAKE PICTURE</button>
                                 <br>
+                                
+                                <button id="cameraTakePictureIOS">TAKE PICTURE IOS</button>
+                                <br>
+                                
                                 <img id="myImage" style="max-width:100%;"/>
                                 
                                 
@@ -121,7 +125,7 @@
                                 <button id="cameraGetPicture">GET PICTURE</button>
                                 
                                 <br/><br/>
-                                <button id="pegaContatos">GET Contatos</button>
+                                <button id="pegaContatos">GET Contatos 2</button>
                                 
                                 
                             </div>
@@ -159,6 +163,10 @@
 	     cameraTakePicture();
 	});
         
+        $.mobile.document.on("click","#cameraTakePictureIOS",function(){
+	     cameraTakePictureIOS();
+	});
+        
         function processHash(url) {
              var a = document.createElement("a");
              a.href = url;
@@ -191,6 +199,16 @@
             alert('teste')
             navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URL });
         }
+        
+        function cameraTakePictureIOS() {
+            alert('teste 3')
+            navigator.camera.getPicture(onSuccess, onFail,
+            {
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+            });
+        }
 
         function onSuccess(imageURI) {
             var image = document.getElementById('myImage');
@@ -201,10 +219,17 @@
             alert('Failed because: ' + message);
         }
         
-        
+        // Reposition the popover if the orientation changes.
+        window.onorientationchange = function() {
+            var cameraPopoverHandle = new CameraPopoverHandle();
+            var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY);
+            cameraPopoverHandle.setPosition(cameraPopoverOptions);
+        }
         
         $.mobile.document.on("click","#pegaContatos",function(){
-	     var options = new ContactFindOptions();
+	    
+             alert('aqui2')
+             var options = new ContactFindOptions();
              options.filter = "";
              options.multiple = true;
              var filter = ["displayName", "addresses"];
@@ -212,6 +237,10 @@
 	});
         
         function onSuccessContatos(contacts) {
+            
+            alert('aqui')
+            alert(contacts.length)
+             
             for (var i = 0; i < contacts.length; i++) {
                 for (var j = 0; j < contacts[i].addresses.length; j++) {
                     alert("Pref: "         + contacts[i].addresses[j].pref          + "\n" +
