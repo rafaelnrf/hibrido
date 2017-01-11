@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="user-scale=no"/>
+        <meta name="viewport" content="width=device-width"/>
+        <meta name="viewport" content="width=device-width, maximum-scale=1"/>
+        <title>Teste Híbrido</title>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.mobile-1.4.5.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    
+
+        <script type="text/javascript">
+
+                    $( document ).on( "pagecreate","#home",function() {
+                        $("#menu_esquerdo").removeClass("ui-shadow");
+			$("#menu_esquerdo").removeClass("ui-corner-all");
+			$("#menu_esquerdo").removeClass("ui-btn");
+			 
+			$("#menu_direito").removeClass("ui-shadow");
+			$("#menu_direito").removeClass("ui-corner-all");
+			$("#menu_direito").removeClass("ui-btn");
+                    });
+
+
+                    $( document ).on( "pageshow","#home" ,function() {
+                        app.initialize();
+                    });  
+                    
+                    
+                    
+                    
+                    
+                    
+                    /*    acesso a geolocalização................
+                    
+                   var onSuccess = function(position) {
+                        alert('Latitude: '          + position.coords.latitude          + '\n' +
+                              'Longitude: '         + position.coords.longitude         + '\n' +
+                              'Altitude: '          + position.coords.altitude          + '\n' +
+                              'Accuracy: '          + position.coords.accuracy          + '\n' +
+                              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                              'Heading: '           + position.coords.heading           + '\n' +
+                              'Speed: '             + position.coords.speed             + '\n' +
+                              'Timestamp: '         + position.timestamp                + '\n');
+                    };
+
+                    // onError Callback receives a PositionError object
+                    //
+                    function onError(error) {
+                        alert('code: '    + error.code    + '\n' +
+                              'message: ' + error.message + '\n');
+                    }
+
+                    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                    
+                    */
+                   
+                    
+                    
+                    
+                    
+                    
+                    /*
+                    document.getElementById("cameraGetPicture").addEventListener("click", cameraGetPicture);
+                    
+                    function cameraGetPicture() {
+                        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+                           destinationType: Camera.DestinationType.DATA_URL,
+                           sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+                        });
+
+                        function onSuccess(imageURL) {
+                           var image = document.getElementById('myImage');
+                           image.src = imageURL;
+                        }
+
+                        function onFail(message) {
+                           alert('Failed because: ' + message);
+                        }
+
+                    }
+
+                    */
+            </script>
+    </head>
+    <body>
+
+
+                <div data-role="page" class="jqm-demos ui-responsive-panel" id="home">
+
+                            <div data-role="header" id="home_header" style="background-color: #bab3d5;">
+                                    <br/>
+                                    <a href="#nav-panel" id="menu_esquerdo" style="border:solid 0px #fff;font-size:30px;"><i class="fa fa-bars"></i></a>
+                                    <a href="#add-form"  id="menu_direito" style="border:solid 0px #fff;font-size:30px;"><i id="controla_painel_direito" class="fa fa-user"></i></a>
+                                    <br/>    
+                            </div><!-- /header -->
+
+                            <div role="main" class="ui-content" id="content_index">
+                                <h5>Meu teste Híbrido! Versão nova</h5>
+                                
+                                <div id="deviceready" class="blink">
+                                    <p class="event listening">Connecting to Device</p>
+                                    <p class="event received">Device is Ready</p>
+                                    <img id="myImage" style="max-width:100%;"/>
+                                </div>
+                                <br><br>
+                                <button id="cameraTakePicture">TAKE PICTURE</button>
+                                <br>
+                                
+                                <button id="cameraTakePictureIOS">TAKE PICTURE IOS</button>
+                                <br>
+                                
+                                <img id="myImage" style="max-width:100%;"/>
+                                
+                                
+                                
+                                <br/><br/>
+                                <button id="cameraGetPicture">GET PICTURE</button>
+                                
+                                <br/><br/>
+                                <button id="pegaContatos">GET Contatos 2</button>
+                                
+                                
+                            </div>
+
+
+                            <div data-role="footer"  style="background-color: #bab3d5;">
+                                <br/><br/>
+                            </div>
+                            
+                            
+                            <!--  panel right -->
+                            <div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="add-form" style="background-color:#FB7E12;border:solid 1px #FB7E12;">
+                                <ul data-role='listview' data-inset='true'>
+                                   <li><a href='#' id='link_entrar_fliiguer'>Localização</a></li>
+                                   <li><a href='#' >Câmera</a></li>
+                                   <li><a href='#meus_audios' >Aúdio</a></li>
+                                   <li><a href='#fliiguer-meus_fliigs' >Fotos</a></li>
+                                   <li><a href='#' >Acelerômetro</a></li>
+                                   <li><a href='#' >Notificação</a></li>
+                                   <li><a href='#' >Web Browser</a></li>
+                                </ul>
+                            
+                            </div>
+                            <!-- /panel right -->
+                            
+                </div><!-- /page -->
+                
+                
+
+                
+    <script type="text/javascript">
+        
+        
+       $.mobile.document.on("click","#cameraTakePicture",function(){
+	     cameraTakePicture();
+	});
+        
+        $.mobile.document.on("click","#cameraTakePictureIOS",function(){
+	     cameraTakePictureIOS();
+	});
+        
+        function processHash(url) {
+             var a = document.createElement("a");
+             a.href = url;
+             return a.hash.replace(/^#/, "");
+        }
+
+        
+        
+        ( function( $, undefined ) {   
+                $.mobile.document.on( "pagecontainerbeforechange", function( event, data ) {
+                    var processedHash;
+                    if ( typeof data.toPage === "string" ) {
+                        processedHash = processHash( data.toPage );
+                        if ( processedHash === "fliiguer-meus_fliigs" ) {
+                             $("#content_index").load('pages/home.html', function(){$(this).trigger("create")});
+                             $('#menu_direito').click();
+                        }
+                        if ( processedHash === "meus_audios" ) {
+                             $("#content_index").load('pages/audio.html', function(){$(this).trigger("create")});
+                             $('#menu_direito').click();
+                        }
+                    }    
+                });
+     
+        })( jQuery );
+        
+        
+        
+        function cameraTakePicture() {
+            alert('teste')
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,destinationType: Camera.DestinationType.FILE_URL });
+        }
+        
+        function cameraTakePictureIOS() {
+            alert('teste 3')
+            navigator.camera.getPicture(onSuccess, onFail,
+            {
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+            });
+        }
+
+        function onSuccess(imageURI) {
+            var image = document.getElementById('myImage');
+            image.src = imageURI;
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+        
+        // Reposition the popover if the orientation changes.
+        window.onorientationchange = function() {
+            var cameraPopoverHandle = new CameraPopoverHandle();
+            var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY);
+            cameraPopoverHandle.setPosition(cameraPopoverOptions);
+        }
+        
+        $.mobile.document.on("click","#pegaContatos",function(){
+	    
+             alert('aqui2')
+             var options = new ContactFindOptions();
+             options.filter = "";
+             options.multiple = true;
+             var filter = ["displayName", "addresses"];
+             navigator.contacts.find(filter, onSuccessContatos, onErrorContatos, options);
+	});
+        
+        function onSuccessContatos(contacts) {
+            
+            alert('aqui')
+            alert(contacts.length)
+             
+            for (var i = 0; i < contacts.length; i++) {
+                for (var j = 0; j < contacts[i].addresses.length; j++) {
+                    alert("Pref: "         + contacts[i].addresses[j].pref          + "\n" +
+                        "Type: "           + contacts[i].addresses[j].type          + "\n" +
+                        "Formatted: "      + contacts[i].addresses[j].formatted     + "\n" +
+                        "Street Address: " + contacts[i].addresses[j].streetAddress + "\n" +
+                        "Locality: "       + contacts[i].addresses[j].locality      + "\n" +
+                        "Region: "         + contacts[i].addresses[j].region        + "\n" +
+                        "Postal Code: "    + contacts[i].addresses[j].postalCode    + "\n" +
+                        "Country: "        + contacts[i].addresses[j].country);
+                }
+            }
+        };
+
+        function onErrorContatos(contactError) {
+            alert('onError!');
+        };
+        
+        
+        
+    </script>             
+    </body>
+       
+</html>
