@@ -131,6 +131,12 @@
                                 <br/><br/>
                                 <button id="pegaAudio">GET Audio</button>
                                 
+                                <br/><br/>
+                                <button id="pegaVideo">GET Video</button>
+                                
+                                
+                                <br/><br/>
+                                
                                 
                             </div>
 
@@ -302,13 +308,60 @@
 
             var options = new FileUploadOptions();
             options.fileKey = "file";
-            options.fileName = options.fileName = audio.substr(audio.lastIndexOf('/')+1);;
+            options.fileName = audio.substr(audio.lastIndexOf('/')+1);;
             options.mimeType = "audio/wav";
 
             var ft = new FileTransfer();
             ft.upload(audio, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
         }
         
+        
+        
+        // capture callback
+        var captureSuccessVideo = function(mediaFiles) {
+            var i, path, len;
+            for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                path = mediaFiles[i].fullPath;
+                alert(path)
+                 uploadVideo(path);
+                // do something interesting with the file
+            }
+        };
+
+        // capture error callback
+        var captureError = function(error) {
+            navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+        };
+
+        $.mobile.document.on("click","#pegaVideo",function(){
+            // start video capture
+            navigator.device.capture.captureVideo(captureSuccessVideo, captureError, {limit:2});
+        
+        });
+        
+        
+        var uploadVideo = function (video) {
+            var win = function (r) {
+                console.log("Code = " + r.responseCode);
+                console.log("Response = " + r.response);
+                console.log("Sent = " + r.bytesSent);
+            }
+
+            var fail = function (error) {
+                alert("An error has occurred: Code = " + error.code);
+                console.log("upload error source " + error.source);
+                console.log("upload error target " + error.target);
+            }
+
+            var options = new FileUploadOptions();
+            options.fileKey = "file";
+            options.fileName = video.substr(video.lastIndexOf('/')+1);
+            options.chunkedMode= false,
+            options.mimeType = "video/mp4";
+
+            var ft = new FileTransfer();
+            ft.upload(audio, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
+        }
         
     </script>             
     </body>
