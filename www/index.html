@@ -285,6 +285,7 @@
                 navigator.device.capture.captureAudio(captureSuccess, captureError, {limit:2});
         });
         
+     
         
         var uploadAudio = function (audio) {
             var win = function (r) {
@@ -301,11 +302,11 @@
 
             var options = new FileUploadOptions();
             options.fileKey = "file";
-            options.fileName = audio;
+            options.fileName = options.fileName = audio.substr(audio.lastIndexOf('/')+1);;
             options.mimeType = "audio/wav";
 
             var ft = new FileTransfer();
-            ft.upload(fileURL, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
+            ft.upload(audio, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
         }
         
         
