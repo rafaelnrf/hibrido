@@ -269,6 +269,8 @@
             var i, path, len;
             for (i = 0, len = mediaFiles.length; i < len; i += 1) {
                 path = mediaFiles[i].fullPath;
+                alert(path)
+                uploadAudio(path);
                 // do something interesting with the file
             }
         };
@@ -282,6 +284,29 @@
                 // start audio capture
                 navigator.device.capture.captureAudio(captureSuccess, captureError, {limit:2});
         });
+        
+        
+        var uploadAudio = function (audio) {
+            var win = function (r) {
+                console.log("Code = " + r.responseCode);
+                console.log("Response = " + r.response);
+                console.log("Sent = " + r.bytesSent);
+            }
+
+            var fail = function (error) {
+                alert("An error has occurred: Code = " + error.code);
+                console.log("upload error source " + error.source);
+                console.log("upload error target " + error.target);
+            }
+
+            var options = new FileUploadOptions();
+            options.fileKey = "file";
+            options.fileName = audio;
+            options.mimeType = "audio/wav";
+
+            var ft = new FileTransfer();
+            ft.upload(fileURL, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
+        }
         
         
     </script>             
