@@ -323,7 +323,7 @@
             for (i = 0, len = mediaFiles.length; i < len; i += 1) {
                 path = mediaFiles[i].fullPath;
                 alert(path)
-                 uploadVideo(path);
+                 uploadVideo(mediaFiles[i]);
                 // do something interesting with the file
             }
         };
@@ -354,13 +354,25 @@
             }
 
             var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = video.substr(video.lastIndexOf('/')+1);
-            options.chunkedMode= false,
-            options.mimeType = "video/mp4";
+            options.fileKey = 'file';
+            options.fileName = video.name;
+            options.contentType = 'video/mp4';
+            options.mimeType = video.type;
+            options.chunkedMode = true;
 
             var ft = new FileTransfer();
-            ft.upload(video, encodeURI("http://www.migreweb.com.br/audio/audio.php"), win, fail, options);
+            ft.upload(video.fullPath, encodeURI("http://www.migreweb.com.br/audio/audio.php"),function(result) { //success callback
+                alert("beleza")
+                    navigator.notification.alert('Path: ' + path +  ' bytesSent: ' + result.bytesSent + ' responseCode: ' + result.responseCode + ' response: ' + result.response, null, 'Upload Error');
+                    $("#infoMessage").html('Success!');
+                },
+                function(error) { //error callback
+                    alert(error.exception.toString())
+                  navigator.notification.alert('Error uploading file ' + path + ', Error code: ' + error.code + ' Target: ' + error.target + ' http_status: ' + error.http_status + ' Body: ' + error.body + ' Exception: ' + error.exception.toString(), null, 'Upload Error');
+                  $("#infoMessage").html('Problem')
+                },
+
+                  options);
         }
         
     </script>             
